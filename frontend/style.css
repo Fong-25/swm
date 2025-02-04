@@ -33,7 +33,7 @@ body{
     background-color: rgba(231, 185, 185, 0.25);
     padding: 20px;
     border-radius: 10px;
-    border:2px solid rgba(206, 200, 200, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     font-size: clamp(0.8rem, 2vw, 1.5rem);
@@ -44,13 +44,14 @@ body{
     width:50px;
     top:0;
     left:0;
-    background-color: rgb(255, 255, 255, 0.6);
+    background-color: rgb(255, 255, 255, 0.4);
     display:flex;
     flex-direction: column;
     justify-content: space-between;
     gap:20px;
     align-items: center;
     padding:5px;
+    border-radius:8px
 
 }
 .control button{
@@ -66,7 +67,12 @@ body{
 }
 .control button img{
     width:100%;
+    aspect-ratio: 1/1;
 }
+.control button:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+    color:rgb(31, 30, 30);
+}   
 
 #set-color{
     display:none
@@ -75,9 +81,17 @@ body{
     display:none
 }
 #settext{
-    margin-top:20px
+    margin-top:20px;
+    margin-bottom: 10px;
 }
 label{
     text-align:center;
     font-size:0.8rem;
+    background-color: none;
+    color:#5f6368;
+}
+label:hover{
+    background-color: rgba(145, 136, 136, 0.8);
+    color:rgb(31, 30, 30);
+    cursor: pointer;
 }
