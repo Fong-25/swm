@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Inter',sans-serif;
+}
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+body{
+    height:100vh;
+    width:100vw;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position: relative;
+}
+#container{
+    width:400px;
+    height:200px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background-color: rgba(231, 185, 185, 0.25);
+    padding: 20px;
+    border-radius: 10px;
+    border:2px solid rgba(206, 200, 200, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    color:rgb(31, 30, 30);
+}
+.control{
+    position:fixed;
+    width:50px;
+    top:0;
+    left:0;
+    background-color: rgb(255, 255, 255, 0.6);
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:20px;
+    align-items: center;
+    padding:5px;
+
+}
+.control button{
+    width:80%;
+    aspect-ratio: 1/1;
+    border:none;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor:pointer;
+    font-size: 1.5rem;
+    color:rgb(31, 30, 30);
+    transition: all 0.3s;
+    background: none;
+}
+.control button img{
+    width:100%;
+}
+
+#set-color{
+    display:none
+}
+#set-text{
+    display:none
+}
+#settext{
+    margin-top:20px
+}
+label{
+    text-align:center;
+    font-size:0.8rem;
+}

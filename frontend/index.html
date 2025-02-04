@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="../sources/back1.mp4" type="video/mp4">
+    </video>
+
+    <div class="control">
+        <button id="set-timer"><img src="../sources/timer.png" alt=""></button>
+        <button id="set-background"><img src="../sources/background.png" alt=""></button>
+        <button id="set-sound"><img src="../sources/sound.png" alt=""></button>
+        <button id="set-note"><img src="../sources/note.png" alt=""></button>
+        <input type="color" id="set-color">
+        <label for="set-color">Back-ground</label>
+        <input type="color" id="set-text">
+        <label for="set-text" id="settext">Text</label>
+    </div>
+    
+    <div id="container">
+        <h1>1:00:00</h1>
+    </div>
+
+    <script src="index.js"></script>
+
+</body>
+</html>
