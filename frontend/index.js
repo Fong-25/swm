@@ -33,8 +33,9 @@ setColor.addEventListener('change', (e) => {
 });
 
 setText.addEventListener('change', (e) => {
-    const selectedText = e.target.value;
-    container.style.color = selectedText;
+    const selectedTextColor = e.target.value;
+    const text = document.getElementById('timer')
+    text.style.color = selectedTextColor
     // Use the text value here
 });
 
@@ -65,3 +66,4 @@ setFull.addEventListener('click', (e) => {
         document.exitFullscreen();
     }
 });
+
