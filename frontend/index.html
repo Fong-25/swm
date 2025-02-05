@@ -8,22 +8,32 @@
 </head>
 <body>
     <video autoplay muted loop id="background-video">
-        <source src="../sources/back1.mp4" type="video/mp4">
+        <source src="../sources/videos/back1.mp4" type="video/mp4">
     </video>
 
+    <button id="full"><img src="../sources/icons/full.png" alt=""></button>
+    
+    <div class="index">
+        <input type="checkbox" id="open-menu">
+        <label for="open-menu"><img src="../sources/icons/index.png" alt=""></label>
+    </div>
     <div class="control">
-        <button id="set-timer"><img src="../sources/timer.png" alt=""></button>
-        <button id="set-background"><img src="../sources/background.png" alt=""></button>
-        <button id="set-sound"><img src="../sources/sound.png" alt=""></button>
-        <button id="set-note"><img src="../sources/note.png" alt=""></button>
+        <button id="set-totaltimer"><img src="../sources/icons/totaltimer.png" alt=""></button>
+        <button id="set-phasetimer"><img src="../sources/icons/phasetimer.png" alt=""></button>
+        <button id="set-breaktimer"><img src="../sources/icons/breaktimer.png" alt=""></button>
+        <button id="set-background"><img src="../sources/icons/background.png" alt=""></button>
+        <button id="set-sound"><img src="../sources/icons/sound.png" alt=""></button>
+        <button id="set-note"><img src="../sources/icons/note.png" alt=""></button>
         <input type="color" id="set-color">
-        <label for="set-color">Back-ground</label>
+        <label class="color" for="set-color">Back-ground</label>
         <input type="color" id="set-text">
-        <label for="set-text" id="settext">Text</label>
+        <label class="color" for="set-text" id="settext">Text</label>
     </div>
     
     <div id="container">
-        <h1>1:00:00</h1>
+        <h5 id="break">5:00</h5>
+        <h1 id="timer">1:00:00</h1>
+        <button id="start">Start</button>
     </div>
 
     <script src="index.js"></script>

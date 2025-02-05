@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 *{
     margin: 0;
@@ -38,12 +38,41 @@ body{
     backdrop-filter: blur(5px);
     font-size: clamp(0.8rem, 2vw, 1.5rem);
     color:rgb(31, 30, 30);
+    font-family: "Pacifico", sans-serif;
+    position:relative;
+}
+#timer{
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color:rgb(31, 30, 30);
+    font-family: "Pacifico", sans-serif;
+}
+#break{
+    position:absolute;
+    top:0px;
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    font-family: 'Pacifico', sans-serif;
+}
+#start{
+    position:absolute;
+    bottom:0px;
+    right:0px;
+    border-radius:50%;
+    font-family: 'Pacifico', sans-serif;
+    background-color: inherit;
+    aspect-ratio: 1/1;
+    outline:none;
+    border:none;
+    width:40px
+}
+#start:hover{
+    filter: drop-shadow(2px 2px 10px rgba(0, 0, 0));
+    color:rgb(31, 30, 30);
 }
 .control{
     position:fixed;
     width:50px;
-    top:0;
-    left:0;
+    top:50px;
+    left:-50px;
     background-color: rgb(255, 255, 255, 0.4);
     display:flex;
     flex-direction: column;
@@ -51,8 +80,30 @@ body{
     gap:20px;
     align-items: center;
     padding:5px;
+    border-radius:8px;
+    transition: ease 0.3s;
+}
+.index{
+    position:fixed;
+    height:50px;
+    width:50px;
+    top:0px;
+    left:0px;
+    background-color: rgb(255, 255, 255, 0.4);
+    align-items: center;
+    padding:5px;
     border-radius:8px
-
+}
+.index #open-menu{
+    display:none;
+}
+.index img{
+    width:100%;
+    aspect-ratio: 1/1;
+}
+.index img:hover{
+    filter:drop-shadow(2px 2px 10px rgba(0, 0, 0));
+    color:rgb(31, 30, 30);
 }
 .control button{
     width:80%;
@@ -68,12 +119,72 @@ body{
 .control button img{
     width:100%;
     aspect-ratio: 1/1;
+    
 }
 .control button:hover{
-    background-color: rgba(255, 255, 255, 0.5);
+    filter: drop-shadow(2px 2px 10px rgba(0, 0, 0));
     color:rgb(31, 30, 30);
 }   
+#set-totaltimer::after{
+    content: "Total";
+    font-size: 0.8rem;
+    color:rgb(31, 30, 30);
+    font-family: 'Pacifico', sans-serif;
+    position:absolute;
+    translate: 10px 4px;
+    display:none;
+}
+#set-breaktimer::after{
+    content: "Break";
+    font-size: 0.8rem;
+    color:rgb(31, 30, 30);
+    font-family: 'Pacifico', sans-serif;
+    position:absolute;
+    translate: 10px 4px;
+    display:none;
+}
+#set-phasetimer::after{
+    content: "Phase";
+    font-size: 0.8rem;
+    color:rgb(31, 30, 30);
+    font-family: 'Pacifico', sans-serif;
+    position:absolute;
+    translate: 10px 4px;
+    display:none;
+}
+#set-background::after{
+    content: "Background";
+    font-size: 0.8rem;
+    color:rgb(31, 30, 30);
+    font-family: 'Pacifico', sans-serif;
+    position:absolute;
+    translate: 10px 4px;
+    display:none;
+}
+#set-sound::after{
+    content: "Sound";
+    font-size: 0.8rem;
+    color:rgb(31, 30, 30);
+    font-family: 'Pacifico', sans-serif;
+    position:absolute;
+    translate: 10px 4px;
+    display:none;
+}
+#set-note::after{
+    content: "Note";
+    font-size: 0.8rem;
+    color:rgb(31, 30, 30);
+    font-family: 'Pacifico', sans-serif;
+    position:absolute;
+    translate: 10px 4px;
+    display:none;
+}
 
+#set-totaltimer:hover::after, #set-breaktimer:hover::after, #set-phasetimer:hover::after, #set-background:hover::after, #set-sound:hover::after, #set-note:hover::after{
+    display:initial;
+    filter: none;
+    transform: ease 0.5s;
+}
 #set-color{
     display:none
 }
@@ -84,14 +195,36 @@ body{
     margin-top:20px;
     margin-bottom: 10px;
 }
-label{
+.color{
     text-align:center;
     font-size:0.8rem;
     background-color: none;
     color:#5f6368;
+    font-family: 'Pacifico', sans-serif;
 }
-label:hover{
-    background-color: rgba(145, 136, 136, 0.8);
+.color:hover{
+    filter: drop-shadow(2px 2px 10px rgba(0, 0, 0));
     color:rgb(31, 30, 30);
     cursor: pointer;
+}
+
+
+#full{
+    position:absolute;
+    top:0px;
+    right:0px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border:none;
+    outline: none;
+    border-radius: 8px;
+    width:50px;
+    aspect-ratio: 1/1;
+}
+#full img{
+    width:80%;
+    aspect-ratio: 1/1;
+}
+#full img:hover{
+    filter: drop-shadow(2px 2px 10px rgba(0, 0, 0));
+    color:rgb(31, 30, 30);
 }
