@@ -8,26 +8,43 @@
 </head>
 <body>
     <video autoplay muted loop id="background-video">
-        <source src="../sources/videos/back1.mp4" type="video/mp4">
+        <source src="../resources/videos/back1.mp4" type="video/mp4">
     </video>
 
-    <button id="full"><img src="../sources/icons/full.png" alt=""></button>
+    <button class="full" id="full"><img src="../resources/icons/full.png" alt=""></button>
+    <div class="file" id="file">
+        <input id="video" type="file" accept="video/*">
+        <label for="video"><img src="../resources/icons/video.png" alt=""></label>
+    </div>
     
     <div class="index">
         <input type="checkbox" id="open-menu">
-        <label for="open-menu"><img src="../sources/icons/index.png" alt=""></label>
+        <label for="open-menu"><img src="../resources/icons/index.png" alt=""></label>
     </div>
     <div class="control">
-        <button id="set-totaltimer"><img src="../sources/icons/totaltimer.png" alt=""></button>
-        <button id="set-phasetimer"><img src="../sources/icons/phasetimer.png" alt=""></button>
-        <button id="set-breaktimer"><img src="../sources/icons/breaktimer.png" alt=""></button>
-        <button id="set-background"><img src="../sources/icons/background.png" alt=""></button>
-        <button id="set-sound"><img src="../sources/icons/sound.png" alt=""></button>
-        <button id="set-note"><img src="../sources/icons/note.png" alt=""></button>
+        <button id="set-totaltimer">
+            <img src="../resources/icons/totaltimer.png" alt="">
+        </button>
+        <button class="controler" id="set-phasetimer">
+            <img src="../resources/icons/phasetimer.png" alt="">
+        </button>
+        <button id="set-breaktimer">
+            <img src="../resources/icons/breaktimer.png" alt="">
+        </button>
+        <button id="set-background">
+            <img src="../resources/icons/background.png" alt="">
+        </button>
+        <button id="set-sound"><img src="../resources/icons/sound.png" alt=""></button>
+        <button id="set-note"><img src="../resources/icons/note.png" alt=""></button>
+        <button id="open-chat"><img src="../resources/icons/chat.png" alt=""></button>
         <input type="color" id="set-color">
         <label class="color" for="set-color">Back-ground</label>
         <input type="color" id="set-text">
         <label class="color" for="set-text" id="settext">Text</label>
+        <input type="color" id="set-icon">
+        <label class="color" for="set-icon">Icons</label>
+        <input type="color" id="set-bar">
+        <label class="color" for="set-bar">Bar</label>
     </div>
     
     <div id="container">
@@ -36,7 +53,23 @@
         <button id="start">Start</button>
     </div>
 
-    <script src="index.js"></script>
+    <div class="chat">
+        <input type="text" placeholder="Write something...">
+    </div>
 
+    <div class="quote" id="quote">
+        <button id="gen"><img src="../resources/icons/quote.png" alt=""></button>
+        <div class="quote-container">
+            <h2 id="sentence"></h2>
+            <p id="author"><i></i></p>
+            <button id="generate">Generate</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script src="counter.js"></script>
+    <script src="music.js"></script>
+    <script src="note.js"></script>
+    <script src="quote.js"></script>
 </body>
 </html>

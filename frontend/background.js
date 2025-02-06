@@ -1,0 +1,1 @@
+const setBackground = document.getElementById('set-background');

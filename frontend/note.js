@@ -1,0 +1,1 @@
+const setNote = document.getElementById('set-note');
