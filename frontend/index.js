@@ -62,10 +62,19 @@ setText.addEventListener('change', (e) => {
 openMenu.addEventListener('change', (e) => {
     if (e.target.checked) {
         // Menu is open
-        control.style.left = '0px'
+        control.style.left = '0px';
     } else {
         // Menu is closed 
         control.style.left = '-50px'
+    }
+});
+
+// Close the menu and uncheck the checkbox when clicking outside the menu
+document.addEventListener('click', (e) => {
+    if (openMenu.checked && !e.target.closest('.control') && !e.target.closest('.index')) {
+        // Clicked outside the menu or the toggle, so uncheck the checkbox and close the menu
+        openMenu.checked = false;
+        control.style.left = '-50px';
     }
 });
 
