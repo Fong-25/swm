@@ -1,5 +1,4 @@
-// separate JS for counter
-
+// Menu toggle functionality
 const setTotal = document.getElementById('set-totaltimer');
 const setPhase = document.getElementById('set-phasetimer');
 const setBreak = document.getElementById('set-breaktimer');
@@ -10,7 +9,7 @@ const timerDisplay = document.getElementById('timer');
 const breakDisplay = document.getElementById('break');
 const startButton = document.getElementById('start');
 
-
+// Keep existing menu toggle events
 setTotal.addEventListener('click', (e) => {
     totalContainer.classList.toggle('set')
 });
@@ -18,100 +17,116 @@ setTotal.addEventListener('click', (e) => {
 setPhase.addEventListener('click', (e) => {
     phaseContainer.classList.toggle('set')
 });
+
 setBreak.addEventListener('click', (e) => {
     breakContainer.classList.toggle('set')
 });
 
-let totalTime = 0; // Total timer in seconds
-let phaseTime = 0; // Phase timer in seconds
-let breakTime = 0; // Break timer in seconds
+// Timer state
+let totalTime = 0; // 0h in seconds
+let phaseTime = 0; // 0h in seconds
+let breakTime = 0;  // 0m in seconds
+let currentPhaseTime = phaseTime;
+let currentBreakTime = breakTime;
+let isRunning = false;
+let isBreak = false;
 let timerInterval;
 
-// Convert minutes to seconds
-const getSeconds = (minutes) => minutes * 60;
+// Add click handlers for time buttons
+document.querySelectorAll('#total-container button').forEach(button => {
+    button.addEventListener('click', () => {
+        const minutes = parseInt(button.id.replace('total', ''));
+        totalTime += minutes * 60;
+        updateDisplay();
+    });
+});
 
-// Format time as HH:MM:SS
-const formatTime = (seconds) => {
-    const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-    const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-    const s = (seconds % 60).toString().padStart(2, '0');
-    return `${h}:${m}:${s}`;
-};
+document.querySelectorAll('#phase-container button').forEach(button => {
+    button.addEventListener('click', () => {
+        const minutes = parseInt(button.id.replace('phase', ''));
+        phaseTime = minutes * 60;
+        currentPhaseTime = phaseTime;
+        updateDisplay();
+    });
+});
 
-// Update total time
-const updateTotalTime = (seconds) => {
-    totalTime += seconds;
+document.querySelectorAll('#break-container button').forEach(button => {
+    button.addEventListener('click', () => {
+        const minutes = parseInt(button.id.replace('break', ''));
+        breakTime = minutes * 60;
+        currentBreakTime = breakTime;
+        updateBreakDisplay();
+    });
+});
+
+// Format time as HH:MM:SS or MM:SS
+function formatTime(seconds) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    
+    if (h > 0) {
+        return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+    return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+function updateDisplay() {
     timerDisplay.textContent = formatTime(totalTime);
-};
+}
 
-// Set phase time (not cumulative)
-const setPhaseTime = (seconds) => {
-    phaseTime = seconds;
-    alert(`Phase time set to ${formatTime(phaseTime)}`);
-};
+function updateBreakDisplay() {
+    breakDisplay.textContent = formatTime(currentBreakTime);
+}
 
-// Set break time (not cumulative)
-const setBreakTime = (seconds) => {
-    breakTime = seconds;
-    breakDisplay.textContent = formatTime(breakTime);
-};
+function handlePhaseComplete() {
+    alert('Phase complete!');
+    if (breakTime > 0) {
+        isBreak = true;
+        currentBreakTime = breakTime;
+        updateBreakDisplay();
+    }
+}
 
-// Event listeners for total timer
-totalButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const minutes = parseInt(button.textContent);
-        updateTotalTime(getSeconds(minutes));
-    });
-});
-
-// Event listeners for phase timer
-phaseButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const minutes = parseInt(button.textContent);
-        setPhaseTime(getSeconds(minutes));
-    });
-});
-
-// Event listeners for break timer
-breakButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const minutes = parseInt(button.textContent);
-        setBreakTime(getSeconds(minutes));
-    });
-});
-
-// Start timer function
-const startTimer = () => {
-    if (totalTime === 0) return;
-    let timeLeft = totalTime;
-    timerInterval = setInterval(() => {
-        if (timeLeft > 0) {
-            timeLeft--;
-            timerDisplay.textContent = formatTime(timeLeft);
-        } else {
-            clearInterval(timerInterval);
-            if (phaseTime > 0) {
-                alert('Phase time ended! Starting break.');
-                startBreak();
+startButton.addEventListener('click', () => {
+    if (!isRunning) {
+        isRunning = true;
+        startButton.textContent = 'Stop';
+        
+        timerInterval = setInterval(() => {
+            if (isBreak) {
+                currentBreakTime--;
+                updateBreakDisplay();
+                
+                if (currentBreakTime <= 0) {
+                    isBreak = false;
+                    currentPhaseTime = phaseTime;
+                    alert('Break time is over!');
+                }
+            } else {
+                totalTime--;
+                currentPhaseTime--;
+                updateDisplay();
+                
+                if (currentPhaseTime <= 0) {
+                    handlePhaseComplete();
+                }
+                
+                if (totalTime <= 0) {
+                    clearInterval(timerInterval);
+                    isRunning = false;
+                    startButton.textContent = 'Start';
+                    alert('Timer complete!');
+                }
             }
-        }
-    }, 1000);
-};
+        }, 1000);
+    } else {
+        clearInterval(timerInterval);
+        isRunning = false;
+        startButton.textContent = 'Start';
+    }
+});
 
-// Start break function
-const startBreak = () => {
-    if (breakTime === 0) return;
-    let breakLeft = breakTime;
-    const breakInterval = setInterval(() => {
-        if (breakLeft > 0) {
-            breakLeft--;
-            breakDisplay.textContent = formatTime(breakLeft);
-        } else {
-            clearInterval(breakInterval);
-            breakDisplay.textContent = '00:00';
-        }
-    }, 1000);
-};
-
-// Start button event listener
-startButton.addEventListener('click', startTimer);
+// Initial display update
+updateDisplay();
+updateBreakDisplay();
