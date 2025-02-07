@@ -6,6 +6,7 @@
     <title>Study with me</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="set-timer.css">
 </head>
 <body>
     <video autoplay muted loop id="background-video">
@@ -26,7 +27,7 @@
         <button id="set-totaltimer">
             <img src="../resources/icons/totaltimer.png" alt="">
         </button>
-        <button class="controler" id="set-phasetimer">
+        <button id="set-phasetimer">
             <img src="../resources/icons/phasetimer.png" alt="">
         </button>
         <button id="set-breaktimer">
@@ -47,11 +48,31 @@
         <input type="color" id="set-bar">
         <label class="color" for="set-bar">Bar</label>
     </div>
+
+    <div class="set-timer-container total-container" id="total-container">
+        <button id="total60">60m</button>
+        <button id="total30">30m</button>
+        <button id="total15">15m</button>
+        <button id="total5">5m</button>
+    </div>
+    <div class="set-timer-container phase-container" id="phase-container">
+        <button id="phase60">60m</button>
+        <button id="phase45">45m</button>
+        <button id="phase30">30m</button>
+        <button id="phase15">15m</button>
+    </div>
+    <div class="set-timer-container break-container" id="break-container">
+        <button id="break0">0m</button>
+        <button id="break5">5m</button>
+        <button id="break10">10m</button>
+        <button id="break15">15m</button>
+    </div>
     
     <div id="container">
         <h5 id="break">5:00</h5>
         <h1 id="timer">1:00:00</h1>
         <button id="start">Start</button>
+        <button id="center">Center</button>
     </div>
 
     <div class="chat">
@@ -77,5 +98,6 @@
     <script src="music.js"></script>
     <script src="note.js"></script>
     <script src="quote.js"></script>
+    <script src="drag.js"></script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+:root{
+    --bar-color:rgb(255, 255, 255, 0.8)
+}
+
+.set-timer-container{
+    position:absolute
+}
+
+.total-container, .phase-container, .break-container{
+    background-color: var(--bar-color);
+    aspect-ratio: 1;
+    top:35px;
+    left:-120px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    padding:2px;
+    border-radius:6px;
+    gap:2px;
+    transition: 0.4s cubic-bezier(0.42, 0, 0.44, 1.68);;
+}
+
+.total-container > button, .phase-container > button, .break-container > button{
+    width:50px;
+    aspect-ratio: 1;
+    text-align: center;
+    background-color: var(--bar-color);
+    border-radius:8px;
+    outline:none;
+    border:1px solid rgb(65, 60, 60)
+}
+
+.total-container > button:hover, .phase-container > button:hover, .break-container > button:hover{
+    background-color:rgba(214, 211, 211, 0.8)
+}
+
+.total-container > button:active, .phase-container > button:active, .break-container > button:active{
+    background:rgba(238, 229, 229, 0.8)
+}
+
+.phase-container{
+    top:90px
+}
+
+.break-container{
+    top:145px
+}
+
+.set {
+    left:60px
+}

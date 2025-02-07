@@ -69,14 +69,14 @@ openMenu.addEventListener('change', (e) => {
     }
 });
 
-// Close the menu and uncheck the checkbox when clicking outside the menu
-document.addEventListener('click', (e) => {
-    if (openMenu.checked && !e.target.closest('.control') && !e.target.closest('.index')) {
-        // Clicked outside the menu or the toggle, so uncheck the checkbox and close the menu
-        openMenu.checked = false;
-        control.style.left = '-50px';
-    }
-});
+// Close the menu and uncheck the checkbox when clicking outside the menu, commented because dont like it
+// document.addEventListener('click', (e) => {
+//     if (openMenu.checked && !e.target.closest('.control') && !e.target.closest('.index')) {
+//         // Clicked outside the menu or the toggle, so uncheck the checkbox and close the menu
+//         openMenu.checked = false;
+//         control.style.left = '-50px';
+//     }
+// });
 
 // test
 // setBreak.addEventListener('click', (e) => {
