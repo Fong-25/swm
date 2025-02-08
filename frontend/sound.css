@@ -1,0 +1,37 @@
+.sound-control {
+    position: absolute;
+    background-color: var(--bar-color);
+    aspect-ratio: 1;
+    top: 245px;
+    left: -120px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding: 2px;
+    border-radius: 6px;
+    gap: 2px;
+    transition: 0.4s cubic-bezier(0.42, 0, 0.44, 1.68);
+    text-wrap: wrap;
+}
+
+.sound-control>button {
+    width: 50px;
+    aspect-ratio: 1;
+    text-align: center;
+    background-color: var(--bar-color);
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid rgb(65, 60, 60)
+}
+
+.sound-control>button:hover {
+    background-color: rgba(214, 211, 211, 0.8)
+}
+
+.sound-control>button:active {
+    background: rgba(238, 229, 229, 0.8)
+}
+
+.set {
+    left: 60px
+}

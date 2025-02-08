@@ -4,7 +4,7 @@ const reset = document.getElementById('c');
 
 
 setNote.addEventListener('click', (e) => {
-    noteContainer.classList.toggle('noting')
+    noteContainer.classList.toggle('set')
 })
 
 reset.addEventListener('click', (e) => {

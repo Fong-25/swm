@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="set-timer.css">
+    <link rel="stylesheet" href="sound.css">
 </head>
+
 <body>
     <video autoplay muted loop id="background-video">
         <source src="../resources/videos/back1.mp4" type="video/mp4">
@@ -18,7 +21,7 @@
         <input id="video" type="file" accept="video/*">
         <label for="video"><img src="../resources/icons/video.png" alt=""></label>
     </div>
-    
+
     <div class="index">
         <input type="checkbox" id="open-menu">
         <label for="open-menu"><img src="../resources/icons/index.png" alt=""></label>
@@ -49,25 +52,25 @@
         <label class="color" for="set-bar">Bar</label>
     </div>
 
-    <div class="set-timer-container total-container" id="total-container">
+    <div class="controller set-timer-container total-container" id="total-container">
         <button id="total60">60m</button>
         <button id="total30">30m</button>
         <button id="total15">15m</button>
         <button id="total5">5m</button>
     </div>
-    <div class="set-timer-container phase-container" id="phase-container">
+    <div class="controller set-timer-container phase-container" id="phase-container">
         <button id="phase60">60m</button>
         <button id="phase45">45m</button>
         <button id="phase30">30m</button>
         <button id="phase15">15m</button>
     </div>
-    <div class="set-timer-container break-container" id="break-container">
+    <div class="controller set-timer-container break-container" id="break-container">
         <button id="break0">0m</button>
         <button id="break5">5m</button>
         <button id="break10">10m</button>
         <button id="break15">15m</button>
     </div>
-    
+
     <div id="container">
         <h5 id="break">0:00</h5>
         <h1 id="timer">00:00</h1>
@@ -79,9 +82,16 @@
         <input type="text" placeholder="Write something...">
     </div>
 
-    <div class="note-container">
+    <div class="controller note-container">
         <textarea name="" id="notes" cols="30" rows="10"></textarea>
         <div id="c">C</div>
+    </div>
+
+    <div id="sound-control" class="controller sound-control">
+        <button id="playPause">Play</button>
+        <button id="next">Next</button>
+        <button id="prev">Previous</button>
+        <button id="loop">Loop</button>
     </div>
 
     <div class="quote" id="quote">
@@ -93,11 +103,17 @@
         </div>
     </div>
 
+    <div id="player" style="display: none;"></div>
+
+
     <script src="index.js"></script>
     <script src="counter.js"></script>
     <script src="music.js"></script>
     <script src="note.js"></script>
     <script src="quote.js"></script>
-    <!-- <script src="drag.js"></script> -->
+    <script src="drag.js"></script>
+    <script src="background.js"></script>
+    <script src="chat.js"></script>
 </body>
+
 </html>

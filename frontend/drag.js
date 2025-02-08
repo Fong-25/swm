@@ -1,40 +1,54 @@
-const draggable = document.getElementById('container');
-const resetButton = document.getElementById('center');
-let originalX = draggable.offsetLeft;
-let originalY = draggable.offsetTop;
+const draggable = document.getElementById("container");
+const centerBtn = document.getElementById("center");
+
+let isDragging = false;
 let offsetX, offsetY;
 
-draggable.addEventListener('mousedown', function (e) {
+draggable.addEventListener("mousedown", (e) => {
+    isDragging = true;
     offsetX = e.clientX - draggable.getBoundingClientRect().left;
     offsetY = e.clientY - draggable.getBoundingClientRect().top;
+    document.body.style.userSelect = "none"; // Prevent text selection while dragging
+});
 
-    function onMouseMove(e) {
+document.addEventListener("mousemove", (e) => {
+    if (isDragging) {
         let newX = e.clientX - offsetX;
         let newY = e.clientY - offsetY;
 
-        // Constrain the movement within the window's bounds
-        const maxX = window.innerWidth - draggable.offsetWidth;
-        const maxY = window.innerHeight - draggable.offsetHeight;
+    // Get window dimensions
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
 
-        // Prevent dragging out of bounds
-        newX = Math.max(0, Math.min(newX, maxX));
-        newY = Math.max(0, Math.min(newY, maxY));
+        // Get the dimensions of the draggable div
+        const divWidth = draggable.offsetWidth;
+        const divHeight = draggable.offsetHeight;
 
-        draggable.style.left = newX + 'px';
-        draggable.style.top = newY + 'px';
+        // Boundary checks
+        newX = Math.max(0, Math.min(newX, windowWidth - divWidth));
+        newY = Math.max(0, Math.min(newY, windowHeight - divHeight));
+
+        draggable.style.left = `${newX}px`;
+        draggable.style.top = `${newY}px`;
     }
-
-    function onMouseUp() {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
 });
 
-// Reset the draggable element's position to its original position
-resetButton.addEventListener('click', function() {
-    draggable.style.left = originalX + 'px';
-    draggable.style.top = originalY + 'px';
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+    document.body.style.userSelect = ""; // Restore text selection
+});
+
+// Center button functionality
+centerBtn.addEventListener("click", () => {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    const divWidth = draggable.offsetWidth;
+    const divHeight = draggable.offsetHeight;
+
+    const centerX = (windowWidth - divWidth) / 2;
+    const centerY = (windowHeight - divHeight) / 2;
+
+    draggable.style.left = `${centerX}px`;
+    draggable.style.top = `${centerY}px`;
 });

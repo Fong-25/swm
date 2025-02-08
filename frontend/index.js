@@ -1,3 +1,11 @@
+// let username;
+// while (!username){
+//     username = prompt('Please enter your username');
+//     username = username.trim();
+//     console.log(username);
+// }
+
+const controllers = document.querySelectorAll('.controller');
 
 const setColor = document.getElementById('set-color');
 const setText = document.getElementById('set-text');
@@ -14,8 +22,6 @@ const fullColor = document.querySelectorAll('.full img');
 const fullFile = document.querySelectorAll('.file label img');
 const quoteFile = document.querySelectorAll('.quote img')
 
-const openChat = document.getElementById('open-chat');
-const chat = document.querySelector('.chat')
 
 // Convert hex to rgba for glass effect
 function hexToRgbA025(hex){
@@ -65,7 +71,16 @@ openMenu.addEventListener('change', (e) => {
         control.style.left = '0px';
     } else {
         // Menu is closed 
-        control.style.left = '-50px'
+        control.style.left = '-50px';
+        const total = document.getElementById('total-container');
+        const phase = document.getElementById('phase-container');
+        const breakk = document.getElementById('break-container');
+        const sound = document.getElementById('sound-control');
+
+        total.classList.remove('set');
+        phase.classList.remove('set');
+        breakk.classList.remove('set');
+        sound.classList.remove('set')
     }
 });
 
@@ -123,9 +138,7 @@ setBar.addEventListener('change', (e) => {
     control.style.backgroundColor = hexToRgbA08(selectedColor);
 });
 
-openChat.addEventListener('click', (e) =>{
-    chat.classList.toggle('open');
-});
+
 
 
 // Active this later if local-saving didnt work

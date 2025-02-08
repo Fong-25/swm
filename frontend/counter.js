@@ -64,7 +64,7 @@ function formatTime(seconds) {
     const h = Math.floor(seconds / 3600);
     const m = Math.floor((seconds % 3600) / 60);
     const s = seconds % 60;
-    
+
     if (h > 0) {
         return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     }
@@ -92,12 +92,12 @@ startButton.addEventListener('click', () => {
     if (!isRunning) {
         isRunning = true;
         startButton.textContent = 'Stop';
-        
+
         timerInterval = setInterval(() => {
             if (isBreak) {
                 currentBreakTime--;
                 updateBreakDisplay();
-                
+
                 if (currentBreakTime <= 0) {
                     isBreak = false;
                     currentPhaseTime = phaseTime;
@@ -107,11 +107,11 @@ startButton.addEventListener('click', () => {
                 totalTime--;
                 currentPhaseTime--;
                 updateDisplay();
-                
+
                 if (currentPhaseTime <= 0) {
                     handlePhaseComplete();
                 }
-                
+
                 if (totalTime <= 0) {
                     clearInterval(timerInterval);
                     isRunning = false;
