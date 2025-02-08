@@ -115,6 +115,15 @@ setIcon.addEventListener('change', (e) => {
     });
     quoteFile.forEach(img => {
         img.style.filter = `opacity(0.5) drop-shadow(0 0 0 ${e.target.value})`;
+    });
+
+    const about = document.querySelectorAll('.about img')
+    about.forEach(img => {
+        img.style.filter = `opacity(0.5) drop-shadow(0 0 0 ${e.target.value})`;
+    })
+    const rooms = document.querySelectorAll('.room img');
+    rooms.forEach(img => {
+        img.style.filter = `opacity(0.5) drop-shadow(0 0 0 ${e.target.value})`;
     })
 });
 
@@ -136,6 +145,20 @@ setFull.addEventListener('click', (e) => {
 setBar.addEventListener('change', (e) => {
     const selectedColor = e.target.value; //Returns hex color value
     control.style.backgroundColor = hexToRgbA08(selectedColor);
+    const about = document.getElementById('about');
+    about.style.backgroundColor = hexToRgbA08(selectedColor);
+    const full = document.getElementById('full');
+    full.style.backgroundColor = hexToRgbA08(selectedColor);
+    const file = document.getElementById('file');
+    file.style.backgroundColor = hexToRgbA08(selectedColor);
+    const quote = document.getElementById('quote');
+    quote.style.backgroundColor = hexToRgbA08(selectedColor);
+    const index = document.getElementById('index');
+    index.style.backgroundColor = hexToRgbA08(selectedColor);
+    const create = document.getElementById('createRoom');
+    create.style.backgroundColor = hexToRgbA08(selectedColor);
+    const join = document.getElementById('joinRoom');
+    join.style.backgroundColor = hexToRgbA08(selectedColor)
 });
 
 

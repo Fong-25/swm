@@ -17,6 +17,6 @@ setBackground.addEventListener('click', () => {
     // Update the video source
     video.src = videos[currentVideoIndex];
     // // Load and play the new video
-    // video.load();
-    // video.play();
+    video.load();
+    video.play();
 });
