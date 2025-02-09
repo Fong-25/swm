@@ -99,33 +99,47 @@ startButton.addEventListener('click', () => {
         isRunning = true;
         startButton.textContent = 'Stop';
 
-        timerInterval = setInterval(() => {
-            if (isBreak) {
-                currentBreakTime--;
-                updateBreakDisplay();
+        if (totalTime == 0) {
+            alert('Please choose total time!');
+            startButton.textContent = 'Start';
+        }
 
-                if (currentBreakTime <= 0) {
-                    isBreak = false;
-                    currentPhaseTime = phaseTime;
-                    alert('Break time is over!');
-                }
-            } else {
-                totalTime--;
-                currentPhaseTime--;
-                updateDisplay();
+        else if (phaseTime == 0) {
+            alert('Please choose phase time!');
+            startButton.textContent = 'Start';
+        }
 
-                if (currentPhaseTime <= 0) {
-                    handlePhaseComplete();
-                }
+        else {
+            timerInterval = setInterval(() => {
+                if (isBreak) {
+                    currentBreakTime--;
+                    updateBreakDisplay();
 
-                if (totalTime <= 0) {
-                    clearInterval(timerInterval);
-                    isRunning = false;
-                    startButton.textContent = 'Start';
-                    alert('Timer complete!');
+                    if (currentBreakTime <= 0) {
+                        isBreak = false;
+                        currentPhaseTime = phaseTime;
+                        alert('Break time is over!');
+                    }
+                } else {
+                    totalTime--;
+                    currentPhaseTime--;
+                    updateDisplay();
+
+                    if (currentPhaseTime <= 0) {
+                        handlePhaseComplete();
+                    }
+
+                    if (totalTime <= 0) {
+                        clearInterval(timerInterval);
+                        isRunning = false;
+                        startButton.textContent = 'Start';
+                        alert('Timer complete!');
+                    }
                 }
-            }
-        }, 1000);
+            }, 1000);
+        }
+
+
     } else {
         clearInterval(timerInterval);
         isRunning = false;
