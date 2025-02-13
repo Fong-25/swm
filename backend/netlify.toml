@@ -1,9 +1,0 @@
-[build]
-  # Command to build the app (e.g., npm run build)
-  command = "npm install"
-  
-  # Directory for the built files (for a static app, it could be `build/`, `out/`, etc.)
-  publish = "frontend"
-  
-  # Directory where serverless functions are located
-  functions = "netlify/functions"

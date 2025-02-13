@@ -4,26 +4,58 @@ const app = express();
 const http = require('http').createServer(app);
 const path = require('path');
 require('dotenv').config();
-// const { styleText } = require('util');
+
+// Configure Socket.IO with optimized settings
 const io = require('socket.io')(http, {
     cors: {
-        // origin: "http://localhost:5500", // Adjust this to match your frontend URL, this is for developing
-        origin: 'https://studytogether-i6sx.onrender.com',
+        origin: 'https://studytogertherat.onrender.com',
         methods: ["GET", "POST"]
+    },
+    // Add Socket.IO specific settings
+    pingTimeout: 60000,
+    pingInterval: 25000,
+    transports: ['websocket', 'polling'],
+    // Optimize for multiple connections
+    connectTimeout: 45000
+});
+
+// Configure rate limit with more lenient settings for Render.com
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 200, // increased from 100
+    standardHeaders: true,
+    legacyHeaders: false,
+    // Skip rate limiting for static files and Socket.IO connections
+    skip: (req) => {
+        return req.headers.upgrade === 'websocket' ||
+            req.url.startsWith('/resources/') ||
+            req.url.endsWith('.html') ||
+            req.url.endsWith('.css') ||
+            req.url.endsWith('.js');
     }
 });
 
-// rate limiting
-const rateLimit = require('express-rate-limit');
-app.use(rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100 // limit each IP to 100 requests per windowMs
-}));
+// Apply rate limiting only to non-static routes
+app.use('/api/', limiter);
 
-// helmet for security headers
+// Configure Helmet with less restrictive settings
 const helmet = require('helmet');
-app.use(helmet());
-
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", 'https://www.youtube.com', 'https://cdn.jsdelivr.net', 'https://cdn.socket.io'],
+            connectSrc: ["'self'", 'wss:', 'ws:', 'https://studytogertherat.onrender.com'],
+            imgSrc: ["'self'", 'data:', 'https:'],
+            styleSrc: ["'self'", "'unsafe-inline'", 'https:'],
+            fontSrc: ["'self'", 'https:', 'data:'],
+            objectSrc: ["'none'"],
+            mediaSrc: ["'self'"],
+            frameSrc: ["'self'", 'https://www.youtube.com']
+        }
+    }
+}));
 // let server;
 // if (process.env.NODE_ENV === 'production') {
 //     const https = require('https');
