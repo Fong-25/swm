@@ -1,0 +1,33 @@
+.messages-container {
+    flex: 1;
+    overflow-y: scroll;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 100%;
+}
+
+.messages-container>p {
+    font-size: 15px;
+    word-break: break-word;
+    margin: 5px;
+    /* overflow: scroll; */
+    /* translate: -15px 0 */
+}
+
+.message {
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    word-break: break-word;
+    overflow: scroll;
+}
+
+.system-message {
+    padding: 5px 10px;
+    color: #888;
+    font-style: italic;
+    word-break: break-word;
+    overflow: scroll;
+}

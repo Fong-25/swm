@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study with me</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="styling/style.css">
+    <link rel="stylesheet" href="styling/background.css">
+    <link rel="stylesheet" href="styling/set-timer.css">
+    <link rel="stylesheet" href="styling/sound.css">
+    <link rel="stylesheet" href="styling/room.css">
+    <link rel="stylesheet" href="styling/about.css">
+</head>
+
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="../resources/videos/back1.mp4" type="video/mp4">
+    </video>
+
+    <button class="full" id="full"><img src="../resources/icons/full.png" alt=""></button>
+    <div class="file" id="file">
+        <input id="video" type="file" accept="video/*">
+        <label for="video"><img src="../resources/icons/video.png" alt=""></label>
+    </div>
+
+    <div class="index" id="index">
+        <input type="checkbox" id="open-menu">
+        <label for="open-menu"><img src="../resources/icons/index.png" alt=""></label>
+    </div>
+    <div class="control">
+        <button id="set-totaltimer">
+            <img src="../resources/icons/totaltimer.png" alt="">
+        </button>
+        <button id="set-phasetimer">
+            <img src="../resources/icons/phasetimer.png" alt="">
+        </button>
+        <button id="set-breaktimer">
+            <img src="../resources/icons/breaktimer.png" alt="">
+        </button>
+        <button id="set-background">
+            <img src="../resources/icons/background.png" alt="">
+        </button>
+        <button id="set-sound"><img src="../resources/icons/sound.png" alt=""></button>
+        <button id="set-note"><img src="../resources/icons/note.png" alt=""></button>
+        <button id="open-chat"><img src="../resources/icons/chat.png" alt=""></button>
+        <input type="color" id="set-color">
+        <label class="color" for="set-color">Timer</label>
+        <input type="color" id="set-text">
+        <label class="color" for="set-text" id="settext">Text</label>
+        <input type="color" id="set-icon">
+        <label class="color" for="set-icon">Icons</label>
+        <input type="color" id="set-bar">
+        <label class="color" for="set-bar">Bar</label>
+    </div>
+
+    <div class="controller set-timer-container total-container" id="total-container">
+        <button id="total60">60m</button>
+        <button id="total30">30m</button>
+        <button id="total15">15m</button>
+        <button id="total5">5m</button>
+    </div>
+    <div class="controller set-timer-container phase-container" id="phase-container">
+        <button id="phase60">60m</button>
+        <button id="phase45">45m</button>
+        <button id="phase30">30m</button>
+        <button id="phase15">15m</button>
+    </div>
+    <div class="controller set-timer-container break-container" id="break-container">
+        <button id="break0">0m</button>
+        <button id="break5">5m</button>
+        <button id="break10">10m</button>
+        <button id="break15">15m</button>
+    </div>
+
+    <div id="container">
+        <h5 id="break">0:00</h5>
+        <h1 id="timer">00:00</h1>
+        <button id="start">Start</button>
+        <button id="center">Center</button>
+    </div>
+
+    <div id="background-container" class="background-container">
+        <button id="b1" class="background-chooser"><img loading="lazy" src="../resources/images/back1.png"
+                alt=""></button>
+        <button id="b2" class="background-chooser"><img loading="lazy" src="../resources/images/back2.png"
+                alt=""></button>
+        <button id="b3" class="background-chooser"><img loading="lazy" src="../resources/images/back3.png"
+                alt=""></button>
+        <button id="b4" class="background-chooser"><img loading="lazy" src="../resources/images/back4.png"
+                alt=""></button>
+        <button id="b5" class="background-chooser"><img loading="lazy" src="../resources/images/back5.png"
+                alt=""></button>
+        <button id="b6" class="background-chooser"><img loading="lazy" src="../resources/images/back6.png"
+                alt=""></button>
+        <button id="b7" class="background-chooser"><img loading="lazy" src="../resources/images/back7.png"
+                alt=""></button>
+        <button id="b8" class="background-chooser"><img loading="lazy" src="../resources/images/back8.png"
+                alt=""></button>
+        <button id="b9" class="background-chooser"><img loading="lazy" src="../resources/images/back9.png"
+                alt=""></button>
+    </div>
+
+    <div class="chat">
+        <div class="messages-container">
+
+        </div>
+        <input type="text" placeholder="Write something...">
+    </div>
+
+    <div class="controller note-container">
+        <textarea name="" id="notes" cols="30" rows="10"></textarea>
+        <div id="c">C</div>
+    </div>
+
+    <div id="sound-control" class="controller sound-control">
+        <button id="playPause">Play</button>
+        <button id="next">Next</button>
+        <button id="prev">Previous</button>
+        <button id="loop">Loop</button>
+    </div>
+
+    <div id="createRoom" class="room"><img src="../resources/icons/invite.png" alt=""></div>
+    <div id="joinRoom" class="room"><img src="../resources/icons/join.png" alt=""></div>
+
+    <div class="quote" id="quote">
+        <button id="gen"><img src="../resources/icons/quote.png" alt=""></button>
+        <div class="quote-container">
+            <h2 id="sentence"></h2>
+            <p id="author"><i></i></p>
+            <button id="generate">Generate</button>
+        </div>
+    </div>
+
+    <div id="about" class="about">
+        <button id="us"><img src="../resources/icons/us.png" alt=""></button>
+    </div>
+
+    <div id="about-container" class="about-container">
+        <ul>
+            <li>Devs: </li>
+            <li>Designer: </li>
+            <li>Tester: </li>
+        </ul>
+    </div>
+    <div id="player" style="display: none;"></div>
+
+    <h4 id="zzz">You must create/join room to start the timer.</h4>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+
+    <script src="script/index.js"></script>
+    <script src="script/socketio.js"></script>
+    <script src="script/music.js"></script>
+    <script src="script/note.js"></script>
+    <script src="script/quote.js"></script>
+    <script src="script/drag.js"></script>
+    <script src="script/background.js"></script>
+    <script src="script/join.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+
+</html>

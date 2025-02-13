@@ -6,17 +6,20 @@ let offsetX, offsetY;
 
 draggable.addEventListener("mousedown", (e) => {
     isDragging = true;
+    draggable.style.transition = 'none';
     offsetX = e.clientX - draggable.getBoundingClientRect().left;
     offsetY = e.clientY - draggable.getBoundingClientRect().top;
-    document.body.style.userSelect = "none"; // Prevent text selection while dragging
+    document.body.style.userSelect = "none"; // Prevent text selection while dragging;
+
 });
 
 document.addEventListener("mousemove", (e) => {
     if (isDragging) {
+        draggable.style.transition = 'none'
         let newX = e.clientX - offsetX;
         let newY = e.clientY - offsetY;
 
-    // Get window dimensions
+        // Get window dimensions
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight;
 
@@ -30,13 +33,16 @@ document.addEventListener("mousemove", (e) => {
 
         draggable.style.left = `${newX}px`;
         draggable.style.top = `${newY}px`;
+
     }
 });
 
 document.addEventListener("mouseup", () => {
     isDragging = false;
     document.body.style.userSelect = ""; // Restore text selection
+    draggable.style.transition = '0.6s ease'
 });
+
 
 // Center button functionality
 centerBtn.addEventListener("click", () => {

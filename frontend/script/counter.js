@@ -1,3 +1,4 @@
+// Counter goes here, currently offline only
 // Menu toggle functionality
 const setTotal = document.getElementById('set-totaltimer');
 const setPhase = document.getElementById('set-phasetimer');
@@ -8,6 +9,7 @@ const breakContainer = document.getElementById('break-container');
 const timerDisplay = document.getElementById('timer');
 const breakDisplay = document.getElementById('break');
 const startButton = document.getElementById('start');
+
 
 // Keep existing menu toggle events
 setTotal.addEventListener('click', (e) => {
@@ -29,14 +31,14 @@ setBreak.addEventListener('click', (e) => {
 });
 
 // Timer state
-let totalTime = 0; // 0h in seconds
-let phaseTime = 0; // 0h in seconds
-let breakTime = 0;  // 0m in seconds
-let currentPhaseTime = phaseTime;
-let currentBreakTime = breakTime;
-let isRunning = false;
-let isBreak = false;
-let timerInterval;
+// let totalTime = 0; // 0h in seconds
+// let phaseTime = 0; // 0h in seconds
+// let breakTime = 0;  // 0m in seconds
+// let currentPhaseTime = phaseTime;
+// let currentBreakTime = breakTime;
+// let isRunning = false;
+// let isBreak = false;
+// let timerInterval;
 
 // Add click handlers for time buttons
 document.querySelectorAll('#total-container button').forEach(button => {
@@ -52,7 +54,18 @@ document.querySelectorAll('#phase-container button').forEach(button => {
         const minutes = parseInt(button.id.replace('phase', ''));
         phaseTime = minutes * 60;
         currentPhaseTime = phaseTime;
+        Toastify({
+            text: `Phase chose: ${minutes} minutes`,
+            duration: 3000,
+            gravity: "top",
+            position: 'right',
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+        }).showToast();
         updateDisplay();
+        phaseContainer.classList.remove('set');
     });
 });
 
@@ -61,7 +74,18 @@ document.querySelectorAll('#break-container button').forEach(button => {
         const minutes = parseInt(button.id.replace('break', ''));
         breakTime = minutes * 60;
         currentBreakTime = breakTime;
+        Toastify({
+            text: `Break chose: ${minutes} minutes`,
+            duration: 3000,
+            gravity: "top",
+            position: 'right',
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+        }).showToast();
         updateBreakDisplay();
+        breakContainer.classList.remove('set');
     });
 });
 
@@ -99,33 +123,47 @@ startButton.addEventListener('click', () => {
         isRunning = true;
         startButton.textContent = 'Stop';
 
-        timerInterval = setInterval(() => {
-            if (isBreak) {
-                currentBreakTime--;
-                updateBreakDisplay();
+        if (totalTime == 0) {
+            alert('Please choose total time!');
+            startButton.textContent = 'Start';
+        }
 
-                if (currentBreakTime <= 0) {
-                    isBreak = false;
-                    currentPhaseTime = phaseTime;
-                    alert('Break time is over!');
-                }
-            } else {
-                totalTime--;
-                currentPhaseTime--;
-                updateDisplay();
+        else if (phaseTime == 0) {
+            alert('Please choose phase time!');
+            startButton.textContent = 'Start';
+        }
 
-                if (currentPhaseTime <= 0) {
-                    handlePhaseComplete();
-                }
+        else {
+            timerInterval = setInterval(() => {
+                if (isBreak) {
+                    currentBreakTime--;
+                    updateBreakDisplay();
 
-                if (totalTime <= 0) {
-                    clearInterval(timerInterval);
-                    isRunning = false;
-                    startButton.textContent = 'Start';
-                    alert('Timer complete!');
+                    if (currentBreakTime <= 0) {
+                        isBreak = false;
+                        currentPhaseTime = phaseTime;
+                        alert('Break time is over!');
+                    }
+                } else {
+                    totalTime--;
+                    currentPhaseTime--;
+                    updateDisplay();
+
+                    if (currentPhaseTime <= 0) {
+                        handlePhaseComplete();
+                    }
+
+                    if (totalTime <= 0) {
+                        clearInterval(timerInterval);
+                        isRunning = false;
+                        startButton.textContent = 'Start';
+                        alert('Timer complete!');
+                    }
                 }
-            }
-        }, 1000);
+            }, 1000);
+        }
+
+
     } else {
         clearInterval(timerInterval);
         isRunning = false;

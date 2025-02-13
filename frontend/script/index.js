@@ -1,9 +1,3 @@
-// let username;
-// while (!username){
-//     username = prompt('Please enter your username');
-//     username = username.trim();
-//     console.log(username);
-// }
 
 const controllers = document.querySelectorAll('.controller');
 
@@ -24,28 +18,28 @@ const quoteFile = document.querySelectorAll('.quote img')
 
 
 // Convert hex to rgba for glass effect
-function hexToRgbA025(hex){
+function hexToRgbA025(hex) {
     var c;
-    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+    if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
         c = hex.substring(1).split('');
-        if(c.length== 3){
+        if (c.length == 3) {
             c = [c[0], c[0], c[1], c[1], c[2], c[2]];
         }
-        c= '0x'+c.join('');
-        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',0.25)';
+        c = '0x' + c.join('');
+        return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',0.25)';
     }
     throw new Error('Bad Hex');
 }
 
-function hexToRgbA08(hex){
+function hexToRgbA08(hex) {
     var c;
-    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+    if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
         c = hex.substring(1).split('');
-        if(c.length== 3){
+        if (c.length == 3) {
             c = [c[0], c[0], c[1], c[1], c[2], c[2]];
         }
-        c= '0x'+c.join('');
-        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',0.8)';
+        c = '0x' + c.join('');
+        return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',0.8)';
     }
     throw new Error('Bad Hex');
 }
@@ -76,11 +70,13 @@ openMenu.addEventListener('change', (e) => {
         const phase = document.getElementById('phase-container');
         const breakk = document.getElementById('break-container');
         const sound = document.getElementById('sound-control');
+        const background = document.getElementById('background-container')
 
         total.classList.remove('set');
         phase.classList.remove('set');
         breakk.classList.remove('set');
-        sound.classList.remove('set')
+        sound.classList.remove('set');
+        background.classList.remove('set')
     }
 });
 
@@ -133,12 +129,12 @@ setFull.addEventListener('click', (e) => {
     if (!document.fullscreenElement) {
         // Enter fullscreen
         document.documentElement.requestFullscreen()
-        .catch(err => console.log(`Error attempting to enable fullscreen: ${err.message}`));
-        fullIMG.src='../resources/icons/fullexit.png';
+            .catch(err => console.log(`Error attempting to enable fullscreen: ${err.message}`));
+        fullIMG.src = '../resources/icons/fullexit.png';
     } else {
         // Exit fullscreen
         document.exitFullscreen();
-        fullIMG.src='../resources/icons/full.png';
+        fullIMG.src = '../resources/icons/full.png';
     }
 });
 
@@ -168,10 +164,17 @@ setBar.addEventListener('change', (e) => {
 // window.addEventListener('beforeunload', function (e) {
 //     // Custom message for user
 //     const message = "Are you sure you want to leave? Your changes may not be saved.";
-    
+
 //     // Standard method for showing a confirmation dialog on some browsers
 //     e.returnValue = message;
-  
+
 //     // For some other browsers, you might need to return the message explicitly
 //     return message;
 // });
+
+const about = document.getElementById('about')
+
+about.addEventListener('click', () => {
+    const aboutContainer = document.querySelector('.about-container');
+    aboutContainer.classList.toggle('set')
+})
