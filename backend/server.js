@@ -7,7 +7,8 @@ require('dotenv').config();
 // const { styleText } = require('util');
 const io = require('socket.io')(http, {
     cors: {
-        origin: "http://localhost:5500", // Adjust this to match your frontend URL, this is for developing
+        // origin: "http://localhost:5500", // Adjust this to match your frontend URL, this is for developing
+        origin: 'https://studytogether-i6sx.onrender.com',
         methods: ["GET", "POST"]
     }
 });
