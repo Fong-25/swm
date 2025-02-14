@@ -70,13 +70,15 @@ openMenu.addEventListener('change', (e) => {
         const phase = document.getElementById('phase-container');
         const breakk = document.getElementById('break-container');
         const sound = document.getElementById('sound-control');
-        const background = document.getElementById('background-container')
+        const background = document.getElementById('background-container');
+        const backgroundContainer = document.getElementById('background-container')
 
         total.classList.remove('set');
         phase.classList.remove('set');
         breakk.classList.remove('set');
         sound.classList.remove('set');
-        background.classList.remove('set')
+        background.classList.remove('set');
+        backgroundContainer.classList.remove('set')
     }
 });
 

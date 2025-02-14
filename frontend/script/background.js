@@ -32,4 +32,33 @@ document.querySelectorAll('.background-chooser').forEach(button => {
         video.src = `/resources/videos/back${id}.mp4`;
     })
 
-})
+});
+
+const videoInput = document.getElementById('video');
+videoInput.addEventListener('change', function (e) {
+    const file = e.target.files[0];
+
+    if (file) {
+        // Revoke the previous object URL to avoid memory leaks
+        if (video.src.startsWith('blob:')) {
+            URL.revokeObjectURL(video.src);
+        }
+
+        // Create a new blob URL for the selected file
+        const videoUrl = URL.createObjectURL(file);
+
+        // Update video source and load the new video
+        video.src = videoUrl;
+        video.load();
+
+        // Optional: Start playing automatically
+        video.play();
+    }
+});
+
+// Clean up blob URL when the page is unloaded
+window.addEventListener('unload', function () {
+    if (video.src.startsWith('blob:')) {
+        URL.revokeObjectURL(videoPlayer.src);
+    }
+});
