@@ -6,12 +6,31 @@ const openChat = document.getElementById('open-chat');
 const chat = document.querySelector('.chat');
 const chatInput = chat.querySelector('input');
 const messagesContainer = chat.querySelector('.messages-container');
+const userListContainer = document.getElementById('user-list')
 
 // Get username when page loads
 let username;
 while (!username) {
     username = prompt('Please enter your username');
     if (username) username = username.trim();
+}
+
+// Function to update the user list
+function updateUserList(users) {
+    userListContainer.innerHTML = '<strong>Users in room:</strong><br>' + users.join('<br>');
+}
+
+// toast
+function showToast(message) {
+    Toastify({
+        text: message,
+        duration: 3000,
+        gravity: "bottom",
+        position: "right",
+        style: {
+            background: "linear-gradient(90deg, #1a11ac 0%, #3838d1 37%)",
+        },
+    }).showToast();
 }
 
 // Register username with server
@@ -84,6 +103,8 @@ socket.on('chat_message', (data) => {
 
     // Auto-scroll to bottom
     chat.scrollTop = messagesContainer.scrollHeight;
+    // Show toast notification
+    showToast(`${data.username}: ${data.message}`);
 });
 
 // Handle user joined/left notifications
@@ -101,6 +122,9 @@ socket.on('user_joined', (data) => {
 
     // Auto-scroll to bottom
     chat.scrollTop = messagesContainer.scrollHeight;
+    updateUserList(data.users);
+    // Show toast notification
+    showToast(`${data.username} joined the room`);
 });
 socket.on('user_left', (data) => {
     // const messageDiv = document.createElement('div');
@@ -115,6 +139,9 @@ socket.on('user_left', (data) => {
 
     // Auto-scroll to bottom
     chat.scrollTop = messagesContainer.scrollHeight;
+    updateUserList(data.users);
+    // Show toast notification
+    showToast(`${data.username} left the room`);
 });
 
 

@@ -154,7 +154,8 @@ io.on('connection', (socket) => {
         callback({ success: true });
 
         // Broadcast to all users in room
-        io.to(roomId).emit('user_joined', { username, users: Array.from(room) });
+        // io.to(roomId).emit('user_joined', { username, users: Array.from(room) });
+        io.to(roomId).emit('user_joined', { username, users: Array.from(rooms.get(roomId)) });
     });
 
     // Handle chat messages
@@ -177,10 +178,11 @@ io.on('connection', (socket) => {
                 if (room.size === 0) {
                     rooms.delete(currentRoom);
                 } else {
-                    io.to(currentRoom).emit('user_left', {
-                        username,
-                        users: Array.from(room)
-                    });
+                    // io.to(currentRoom).emit('user_left', {
+                    //     username,
+                    //     users: Array.from(room)
+                    // });
+                    io.to(currentRoom).emit('user_left', { username, users: Array.from(room) });
                 }
             }
         }
