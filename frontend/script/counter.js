@@ -16,18 +16,24 @@ setTotal.addEventListener('click', (e) => {
     totalContainer.classList.toggle('set');
     phaseContainer.classList.remove('set');
     breakContainer.classList.remove('set');
+
+    document.querySelector('.background-container').classList.remove('set')
 });
 
 setPhase.addEventListener('click', (e) => {
     phaseContainer.classList.toggle('set');
     totalContainer.classList.remove('set');
     breakContainer.classList.remove('set');
+
+    document.querySelector('.background-container').classList.remove('set')
 });
 
 setBreak.addEventListener('click', (e) => {
     breakContainer.classList.toggle('set');
     totalContainer.classList.remove('set');
     phaseContainer.classList.remove('set');
+
+    document.querySelector('.background-container').classList.remove('set')
 });
 
 // Timer state

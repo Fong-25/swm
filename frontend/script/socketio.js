@@ -20,7 +20,7 @@ function updateUserList(users) {
     userListContainer.innerHTML = '<strong>Users in room:</strong><br>' + users.join('<br>');
 }
 
-// toast
+// toast for chat and join/left noti
 function showToast(message) {
     Toastify({
         text: message,
@@ -28,7 +28,7 @@ function showToast(message) {
         gravity: "bottom",
         position: "right",
         style: {
-            background: "linear-gradient(90deg, #1a11ac 0%, #3838d1 37%)",
+            background: "linear-gradient(90deg, #0a0d67 0%, #0c18a4 50%)",
         },
     }).showToast();
 }
@@ -50,20 +50,50 @@ function handleRoomActions() {
         if (roomId) {
             socket.emit('create_room', roomId, (response) => {
                 if (!response.success) {
-                    alert(response.message);
+                    alert(response.message); // Maybe change this to Toastify
                     window.location.hash = '';
                 }
+                // add toast to this if create success
+                else {
+                    Toastify({
+                        text: `Created room ${roomId} successfully`,
+                        duration: 3000,
+                        gravity: "bottom",
+                        position: "right",
+                        style: {
+                            background: "linear-gradient(90deg, #0b6c0c 0%, #11980f 37%)",
+                        },
+                    }).showToast();
+                }
             });
+        }
+        else {
+            window.location.hash = '';  // reset hash if cancel
         }
     } else if (hash === '#join') {
         const roomId = prompt('Enter room ID to join:');
         if (roomId) {
             socket.emit('join_room', roomId, (response) => {
                 if (!response.success) {
-                    alert(response.message);
+                    alert(response.message); // Maybe change this to Toastify
                     window.location.hash = '';
                 }
+                // add toast to this if join success
+                else {
+                    Toastify({
+                        text: `Joined room ${roomId} successfully`,
+                        duration: 3000,
+                        gravity: "bottom",
+                        position: "right",
+                        style: {
+                            background: "linear-gradient(90deg, #0b6c0c 0%, #11980f 37%)",
+                        },
+                    }).showToast();
+                }
             });
+        }
+        else {
+            window.location.hash = ''  // reset hash if cancel
         }
     }
 }

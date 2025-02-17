@@ -211,7 +211,7 @@ io.on('connection', (socket) => {
             case 'phase':
                 roomTimers[currentRoom].phaseTime = data.phaseTime;
                 roomTimers[currentRoom].currentPhaseTime = data.phaseTime;
-                // socket.to(currentRoom).emit('phase_chose'); // Toast
+                // io.to(currentRoom).emit('phase_chose'); // Toast
                 break;
             case 'break':
                 roomTimers[currentRoom].breakTime = data.breakTime;

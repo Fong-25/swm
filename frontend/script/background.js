@@ -23,7 +23,11 @@ let currentVideoIndex = 0;
 // });
 
 setBackground.addEventListener('click', () => {
-    backgroundContainer.classList.toggle('set')
+    backgroundContainer.classList.toggle('set');
+
+    document.getElementById('total-container').classList.remove('set');
+    document.getElementById('phase-container').classList.remove('set');
+    document.getElementById('break-container').classList.remove('set')
 })
 
 document.querySelectorAll('.background-chooser').forEach(button => {
