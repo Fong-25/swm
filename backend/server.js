@@ -8,8 +8,8 @@ require('dotenv').config();
 // Configure Socket.IO with optimized settings
 const io = require('socket.io')(http, {
     cors: {
-        // origin: 'https://studytogertherat.onrender.com',
-        origin: 'http://localhost:3000/',
+        origin: 'https://studytogertherat.onrender.com',
+        // origin: 'http://localhost:3000/',
         methods: ["GET", "POST"]
     },
     // Add Socket.IO specific settings
