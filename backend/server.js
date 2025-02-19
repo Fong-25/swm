@@ -8,7 +8,8 @@ require('dotenv').config();
 // Configure Socket.IO with optimized settings
 const io = require('socket.io')(http, {
     cors: {
-        origin: 'https://studytogertherat.onrender.com',
+        // origin: 'https://studytogertherat.onrender.com',
+        origin: 'http://localhost:3000/',
         methods: ["GET", "POST"]
     },
     // Add Socket.IO specific settings
@@ -211,12 +212,12 @@ io.on('connection', (socket) => {
             case 'phase':
                 roomTimers[currentRoom].phaseTime = data.phaseTime;
                 roomTimers[currentRoom].currentPhaseTime = data.phaseTime;
-                // io.to(currentRoom).emit('phase_chose'); // Toast
+                io.to(currentRoom).emit('phase_chose', roomTimers[currentRoom]); // Toast
                 break;
             case 'break':
                 roomTimers[currentRoom].breakTime = data.breakTime;
                 roomTimers[currentRoom].currentBreakTime = data.breakTime;
-                // socket.to(currentRoom).emit('break_chose'); // Toast
+                io.to(currentRoom).emit('break_chose', roomTimers[currentRoom]); // Toast
                 break;
         }
 

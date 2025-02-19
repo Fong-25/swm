@@ -232,21 +232,76 @@ socket.on('timer_update', (data) => {
     startButton.textContent = isRunning ? 'Stop' : 'Start';
 });
 
+socket.on('phase_chose', (data) => {
+    Toastify({
+        text: `Phase chose: ${data.phaseTime / 60} minutes`,
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+    }).showToast();
+})
 
+socket.on('break_chose', (data) => {
+    Toastify({
+        text: `Break chose: ${data.breakTime / 60} minutes`,
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+    }).showToast();
+})
 
 socket.on('timer_complete', () => {
-    alert('Timer complete!');
+    // alert('Timer complete!');
+    Toastify({
+        text: `Timer complete`,
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #ddca25, #c1d12d)",
+        },
+    }).showToast();
+
     isRunning = false;
     startButton.textContent = 'Start';
 });
 
 socket.on('break_complete', () => {
-    alert('Break time is over!');
+    // alert('Break time is over!');
+    Toastify({
+        text: `Break time is over`,
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #ddca25, #c1d12d)",
+        },
+    }).showToast();
     isBreak = false;
 });
 
 socket.on('phase_complete', () => {
-    alert('Phase complete!');
+    // alert('Phase complete!');
+    Toastify({
+        text: `Phase complete`,
+        duration: 3000,
+        gravity: "top",
+        position: 'right',
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #ddca25, #c1d12d)",
+        },
+    }).showToast();
 });
 
 
@@ -265,16 +320,16 @@ document.querySelectorAll('#phase-container button').forEach(button => {
         const minutes = parseInt(button.id.replace('phase', ''));
         phaseTime = minutes * 60;
         currentPhaseTime = phaseTime;
-        Toastify({
-            text: `Phase chose: ${minutes} minutes`,
-            duration: 3000,
-            gravity: "top",
-            position: 'right',
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-        }).showToast();
+        // Toastify({
+        //     text: `Phase chose: ${minutes} minutes`,
+        //     duration: 3000,
+        //     gravity: "top",
+        //     position: 'right',
+        //     stopOnFocus: true, // Prevents dismissing of toast on hover
+        //     style: {
+        //         background: "linear-gradient(to right, #00b09b, #96c93d)",
+        //     },
+        // }).showToast();
         socket.emit('set_time', { phaseTime, type: 'phase' });
         updateDisplay();
         phaseContainer.classList.remove('set');
@@ -286,16 +341,16 @@ document.querySelectorAll('#break-container button').forEach(button => {
         const minutes = parseInt(button.id.replace('break', ''));
         breakTime = minutes * 60;
         currentBreakTime = breakTime;
-        Toastify({
-            text: `Break chose: ${minutes} minutes`,
-            duration: 3000,
-            gravity: "top",
-            position: 'right',
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-        }).showToast();
+        // Toastify({
+        //     text: `Break chose: ${minutes} minutes`,
+        //     duration: 3000,
+        //     gravity: "top",
+        //     position: 'right',
+        //     stopOnFocus: true, // Prevents dismissing of toast on hover
+        //     style: {
+        //         background: "linear-gradient(to right, #00b09b, #96c93d)",
+        //     },
+        // }).showToast();
 
         socket.emit('set_time', { breakTime, type: 'break' });
         updateBreakDisplay();
@@ -323,15 +378,15 @@ function updateBreakDisplay() {
     breakDisplay.textContent = formatTime(currentBreakTime);
 }
 
-function handlePhaseComplete() {
-    alert('Phase complete!');
-    if (breakTime > 0) {
-        isBreak = true;
-        currentBreakTime = breakTime;
-        socket.emit('phase_complete');
-        updateBreakDisplay();
-    }
-}
+// function handlePhaseComplete() {
+//     // alert('Phase complete!');
+//     if (breakTime > 0) {
+//         isBreak = true;
+//         currentBreakTime = breakTime;
+//         socket.emit('phase_complete');
+//         updateBreakDisplay();
+//     }
+// }
 
 
 startButton.addEventListener('click', () => {
