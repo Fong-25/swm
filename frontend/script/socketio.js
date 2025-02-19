@@ -240,7 +240,7 @@ socket.on('phase_chose', (data) => {
         position: 'right',
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            background: "linear-gradient(90deg, #359508 0%, #40ad0a 42%)",
         },
     }).showToast();
 })
@@ -253,10 +253,22 @@ socket.on('break_chose', (data) => {
         position: 'right',
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            background: "linear-gradient(90deg, #359508 0%, #40ad0a 42%)",
         },
     }).showToast();
 })
+
+socket.on('error_message', (data) => {
+    Toastify({
+        text: data.message,
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        style: {
+            background: "linear-gradient(to right, #d9534f, #c9302c)", // Red background for errors
+        },
+    }).showToast();
+});
 
 socket.on('timer_complete', () => {
     // alert('Timer complete!');
@@ -267,7 +279,7 @@ socket.on('timer_complete', () => {
         position: 'right',
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "linear-gradient(to right, #ddca25, #c1d12d)",
+            background: "linear-gradient(90deg, #b8a60a 0%, #bda814 35%);",
         },
     }).showToast();
 
@@ -284,7 +296,7 @@ socket.on('break_complete', () => {
         position: 'right',
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "linear-gradient(to right, #ddca25, #c1d12d)",
+            background: "linear-gradient(90deg, #b8a60a 0%, #bda814 35%)",
         },
     }).showToast();
     isBreak = false;
@@ -299,7 +311,7 @@ socket.on('phase_complete', () => {
         position: 'right',
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "linear-gradient(to right, #ddca25, #c1d12d)",
+            background: "linear-gradient(90deg, #b8a60a 0%, #bda814 35%);",
         },
     }).showToast();
 });

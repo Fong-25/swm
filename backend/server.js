@@ -229,6 +229,13 @@ io.on('connection', (socket) => {
 
         if (!roomTimers[currentRoom]) return; // No timer set for this room
 
+        if (!roomTimers[currentRoom]) return; // No timer initialized for this room
+
+        if (roomTimers[currentRoom].phaseTime === 0) { //  Prevent starting if phase time is not set
+            socket.emit('error_message', { message: 'Please select a phase time before starting the timer.' });
+            return;
+        }
+
         roomTimers[currentRoom].isRunning = true;
         io.to(currentRoom).emit('timer_update', roomTimers[currentRoom]);
 
@@ -243,6 +250,7 @@ io.on('connection', (socket) => {
                     timer.isBreak = false;
                     timer.currentPhaseTime = timer.phaseTime;
                     io.to(currentRoom).emit('break_complete');
+                    timer.currentBreakTime = timer.breakTime; // Reset break time for the next cycle
                 }
             } else {
                 timer.totalTime--;
