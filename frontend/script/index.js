@@ -173,10 +173,3 @@ setBar.addEventListener('change', (e) => {
 //     // For some other browsers, you might need to return the message explicitly
 //     return message;
 // });
-
-const about = document.getElementById('about')
-
-about.addEventListener('click', () => {
-    const aboutContainer = document.querySelector('.about-container');
-    aboutContainer.classList.toggle('set')
-})

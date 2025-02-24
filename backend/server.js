@@ -134,6 +134,17 @@ io.on('connection', (socket) => {
 
         // Broadcast to all users in room
         io.to(roomId).emit('user_joined', { username, users: Array.from(rooms.get(roomId)) });
+
+        // Debug
+        roomTimers[currentRoom] = {
+            totalTime: 0,
+            phaseTime: 0,
+            breakTime: 0,
+            currentPhaseTime: 0,
+            currentBreakTime: 0,
+            isRunning: false,
+            isBreak: false
+        };
     });
 
     // Handle room joining
@@ -177,7 +188,17 @@ io.on('connection', (socket) => {
             if (room) {
                 room.delete(username);
                 if (room.size === 0) {
+                    roomTimers[currentRoom] = {
+                        totalTime: 0,
+                        phaseTime: 0,
+                        breakTime: 0,
+                        currentPhaseTime: 0,
+                        currentBreakTime: 0,
+                        isRunning: false,
+                        isBreak: false
+                    };
                     rooms.delete(currentRoom);
+
                 } else {
                     // io.to(currentRoom).emit('user_left', {
                     //     username,
@@ -292,4 +313,5 @@ const PORT = process.env.PORT || 3000;
 http.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
 

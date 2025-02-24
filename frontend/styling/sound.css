@@ -1,22 +1,27 @@
 .sound-control {
     position: absolute;
     background-color: var(--bar-color);
-    aspect-ratio: 1;
-    top: 245px;
-    left: -120px;
+    top: 225px;
+    left: -200px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    padding: 2px;
+    grid-template-columns: 75px 75px;
+    grid-template-rows: 1fr 1fr 0.7fr 0.6fr 0.6fr;
+    padding: 4px;
     border-radius: 6px;
     gap: 2px;
     transition: 0.4s cubic-bezier(0.42, 0, 0.44, 1.68);
     text-wrap: wrap;
+    grid-template-areas:
+        "box-1 box-2"
+        "box-3 box-4"
+        "box-5 box-5"
+        "box-6 box-6"
+        "box-7 box-7";
 }
 
-.sound-control>button {
-    width: 50px;
-    aspect-ratio: 1;
+.sound-control .player {
+
+    aspect-ratio: 3/2;
     text-align: center;
     background-color: var(--bar-color);
     border-radius: 8px;
@@ -25,12 +30,26 @@
     font-family: 'Pacifico', sans-serif;
 }
 
-.sound-control>button:hover {
+.sound-control .player:hover {
     background-color: rgba(214, 211, 211, 0.8)
 }
 
-.sound-control>button:active {
+.sound-control .player:active {
     background: rgba(238, 229, 229, 0.8)
+}
+
+
+.sound-control .input {
+    outline: none;
+}
+
+.sound-control #playlistacpt {
+    margin-top: 5px
+}
+
+.sound-control .input:focus {
+    outline: none;
+    border: 1px solid black
 }
 
 .set {

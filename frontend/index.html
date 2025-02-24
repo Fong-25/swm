@@ -117,10 +117,13 @@
     </div>
 
     <div id="sound-control" class="controller sound-control">
-        <button id="playPause">Play</button>
-        <button id="next">Next</button>
-        <button id="prev">Previous</button>
-        <button id="loop">Loop</button>
+        <button id="playPause" style="grid-area: box-1" class="player">Play</button>
+        <button id="next" style="grid-area: box-2" class="player">Next</button>
+        <button id="prev" style="grid-area: box-3" class="player">Previous</button>
+        <button id="loop" style="grid-area: box-4" class="player">Loop</button>
+        <input type="text" id="playlistacpt" placeholder="Link to your playlist" style="grid-area: box-5">
+        <button id="submit" style="grid-area: box-6">Submit your playlist</button>
+        <input type="range" id="volume" style="grid-area: box-7" min="0" max="100" step="1">
     </div>
 
     <div id="createRoom" class="room"><img src="/resources/icons/invite.png" alt=""></div>
@@ -139,14 +142,7 @@
         <button id="us"><img src="../resources/icons/us.png" alt=""></button>
     </div>
 
-    <div id="about-container" class="about-container">
-        <ul>
-            <li>Devs: </li>
-            <li>Designer: </li>
-            <li>Tester: </li>
-        </ul>
-    </div>
-    <div id="player" style="display: none;"></div>
+    <div id="player" style="position: absolute; left: -9999px;"></div>
     <h4 id="zzz">You must create/join room to start the timer.</h4>
 
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
