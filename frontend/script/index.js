@@ -123,6 +123,11 @@ setIcon.addEventListener('change', (e) => {
     rooms.forEach(img => {
         img.style.filter = `opacity(0.5) drop-shadow(0 0 0 ${e.target.value})`;
     })
+
+    const pip = document.querySelectorAll('.pip img');
+    pip.forEach(img => {
+        img.style.filter = `opacity(0.5) drop-shadow(0 0 0 ${e.target.value})`
+    })
 });
 
 setFull.addEventListener('click', (e) => {
@@ -156,7 +161,9 @@ setBar.addEventListener('change', (e) => {
     const create = document.getElementById('createRoom');
     create.style.backgroundColor = hexToRgbA08(selectedColor);
     const join = document.getElementById('joinRoom');
-    join.style.backgroundColor = hexToRgbA08(selectedColor)
+    join.style.backgroundColor = hexToRgbA08(selectedColor);
+    const pip = document.getElementById('pip-mode');
+    pip.style.backgroundColor = hexToRgbA08(selectedColor)
 });
 
 

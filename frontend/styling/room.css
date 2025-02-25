@@ -66,3 +66,43 @@
     filter: drop-shadow(2px 2px 10px rgba(0, 0, 0));
     color: rgb(31, 30, 30);
 }
+
+#pip-mode {
+    position: absolute;
+    top: 206px;
+    right: 0px;
+    background-color: var(--bar-color);
+    align-items: center;
+    padding: 5px;
+    border-radius: 8px 8px 0 8px;
+    border: 0.8px solid rgb(255, 255, 255, 0.9);
+    width: 50px;
+    aspect-ratio: 1;
+    width: 50px
+}
+
+#pip-mode img {
+    width: 80%;
+    aspect-ratio: 1/1;
+    translate: 5px 6px
+}
+
+#pip-mode img:hover {
+    filter: drop-shadow(2px 2px 10px rgba(0, 0, 0));
+    color: rgb(31, 30, 30);
+}
+
+#pip-mode::before {
+    content: "Pic-in-Pic";
+    font-size: 0.8rem;
+    color: rgb(31, 30, 30);
+    font-family: 'Pacifico', sans-serif;
+    position: absolute;
+    translate: -75px 5px;
+    display: none;
+    width: 100px
+}
+
+#pip-mode:hover::before {
+    display: initial;
+}

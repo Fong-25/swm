@@ -6,7 +6,8 @@ const openChat = document.getElementById('open-chat');
 const chat = document.querySelector('.chat');
 const chatInput = chat.querySelector('input');
 const messagesContainer = chat.querySelector('.messages-container');
-const userListContainer = document.getElementById('user-list')
+const userListContainer = document.getElementById('user-list');
+const showRoomID = document.getElementById('roomid')
 
 // Get username when page loads
 let username;
@@ -64,6 +65,7 @@ function handleRoomActions() {
                             background: "linear-gradient(90deg, #0b6c0c 0%, #11980f 37%)",
                         },
                     }).showToast();
+                    showRoomID.innerHTML = `<strong>Room ID: ${roomId}</strong>`
                 }
             });
         }
@@ -89,6 +91,7 @@ function handleRoomActions() {
                             background: "linear-gradient(90deg, #0b6c0c 0%, #11980f 37%)",
                         },
                     }).showToast();
+                    showRoomID.innerHTML = `<strong>Room ID: ${roomId}</strong>`
                 }
             });
         }
@@ -155,6 +158,7 @@ socket.on('user_joined', (data) => {
     updateUserList(data.users);
     // Show toast notification
     showToast(`${data.username} joined the room`);
+
 });
 socket.on('user_left', (data) => {
     // const messageDiv = document.createElement('div');
