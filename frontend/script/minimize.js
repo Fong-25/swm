@@ -200,7 +200,6 @@ function startContainerCapture() {
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Draw the timer text with better styling
         if (timerEl) {
             // Get the timer's font style or use a nice default
             const timerFont = window.getComputedStyle(timerEl).font;
@@ -273,3 +272,5 @@ if (!document.pictureInPictureEnabled) {
         }).showToast();
     }
 }
+
+// origin

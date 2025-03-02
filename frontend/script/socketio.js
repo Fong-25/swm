@@ -7,7 +7,9 @@ const chat = document.querySelector('.chat');
 const chatInput = chat.querySelector('input');
 const messagesContainer = chat.querySelector('.messages-container');
 const userListContainer = document.getElementById('user-list');
-const showRoomID = document.getElementById('roomid')
+const showRoomID = document.getElementById('roomid');
+const openVideocall = document.getElementById('video-call');
+const cameraContainer = document.querySelector('.camera-container')
 
 // Get username when page loads
 let username;
@@ -110,6 +112,11 @@ handleRoomActions();
 openChat.addEventListener('click', (e) => {
     chat.classList.toggle('open');
 });
+
+// openVideocall.addEventListener('click', () => {
+//     cameraContainer.classList.toggle('call');
+//     console.log(1)
+// })
 
 // Send chat message
 chatInput.addEventListener('keypress', (e) => {
@@ -416,3 +423,4 @@ startButton.addEventListener('click', () => {
 // Initial display update
 updateDisplay();
 updateBreakDisplay();
+

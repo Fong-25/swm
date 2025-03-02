@@ -9,8 +9,6 @@ const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 document.head.appendChild(tag);
 
-
-
 let player;
 let currentPlaylistID = 'RDQMoMVlAWrQvxU';
 let volume = 50;
@@ -133,7 +131,9 @@ submit.addEventListener('click', () => {
                 background: "linear-gradient(90deg, #359508 0%, #40ad0a 42%)",
             },
         }).showToast();
-        document.getElementById('playPause').innerHTML = 'Pause'
+        document.getElementById('playPause').innerHTML = 'Pause';
+        playlistInput.value = ''
+
     } else {
         Toastify({
             text: "Player not ready yet. Please try again in a moment.",
@@ -155,3 +155,4 @@ submit.addEventListener('click', () => {
 //         player.playVideo();
 //     }
 // });
+
