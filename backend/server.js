@@ -169,38 +169,6 @@ io.on('connection', (socket) => {
         // io.to(roomId).emit('user_joined', { username, users: Array.from(room) });
         io.to(roomId).emit('user_joined', { username, users: Array.from(rooms.get(roomId)) });
     });
-    // WebRTC signaling
-    socket.on('join_video_call', (roomId) => {
-        if (currentRoom !== roomId) return;
-
-        // Notify all users in the room that this user joined the video call
-        io.to(roomId).emit('join_video_call', {
-            userId: socket.id,
-            username
-        });
-    });
-
-    socket.on('video_offer', (data) => {
-        io.to(data.targetId).emit('video_offer', {
-            sdp: data.sdp,
-            userId: socket.id,
-            username
-        });
-    });
-
-    socket.on('video_answer', (data) => {
-        io.to(data.targetId).emit('video_answer', {
-            sdp: data.sdp,
-            userId: socket.id
-        });
-    });
-
-    socket.on('ice_candidate', (data) => {
-        io.to(data.targetId).emit('ice_candidate', {
-            candidate: data.candidate,
-            userId: socket.id
-        });
-    });
 
     // Handle chat messages
     socket.on('chat_message', (message) => {
